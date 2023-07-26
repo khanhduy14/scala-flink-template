@@ -1,7 +1,7 @@
 lazy val root = (project in file("."))
   .enablePlugins(ScriptedPlugin)
   .settings(
-    name := "scala-flink-template.g8"
+    name := "scala-flink-template.g8",
     test in Test := {
       val _ = (g8Test in Test).toTask("").value
     },

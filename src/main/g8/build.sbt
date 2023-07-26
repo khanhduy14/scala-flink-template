@@ -8,6 +8,8 @@ organizationName := "$organization$"
 scalaVersion := "$scalaversion$"
 
 val flinkVersion = "$flinkversion$"
+val log4jCoreVersion = "2.17.2"
+val log4sVersion = "1.10.0"
 
 lazy val flinkDependencies: Seq[ModuleID] = Seq(
   "org.apache.flink" % "flink-streaming-java" % flinkVersion,
@@ -30,19 +32,7 @@ lazy val loggingDependencies: Seq[ModuleID] = Seq(
   "org.log4s" %% "log4s" % log4sVersion
 )
 
-lazy val testDependencies: Seq[ModuleID] = Seq(
-  "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
-  "org.scalatestplus" %% "mockito-3-4" % "3.2.10.0" % Test,
-  "org.scalatest" %% "scalatest-wordspec" % scalaTestVersion % Test,
-  "org.scalactic" %% "scalactic" % scalaTestVersion,
-  "org.testcontainers" % "kafka" % testContainerVersion % Test,
-  "javax.xml.bind" % "jaxb-api" % "2.3.1" % Test,
-  "org.mockito" % "mockito-core" % "4.6.1" % Test,
-  "org.spockframework" % "spock-core" % "2.2-groovy-3.0" % Test
-)
-
-
-libraryDependencies += flinkDependencies ++ loggingDependencies ++ testDependencies
+libraryDependencies += flinkDependencies ++ loggingDependencies
 
 assembly / assemblyMergeStrategy := {
   case x if Assembly.isConfigFile(x) =>
